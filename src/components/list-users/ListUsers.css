@@ -1,0 +1,10 @@
+.list-users {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.table-dark th,
+.table-dark td {
+    background: transparent;
+}
