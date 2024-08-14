@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
 import { RowUser } from './row-user/RowUser.jsx';
+import PropTypes from 'prop-types';
 import './ListUsers.css';
 
-export const ListUsers = ({ users, handleRemoveFromCart }) => {
+export const ListUsers = ({ users, handlerSelectUser, handleRemoveUser }) => {
   return (
     <>
       <h3>Users:</h3>
@@ -20,7 +20,7 @@ export const ListUsers = ({ users, handleRemoveFromCart }) => {
             </thead>
             <tbody>
               {users.map((user) => (
-                <RowUser key={user.id} user={user} handleRemoveFromCart={handleRemoveFromCart} />
+                <RowUser key={user.id} user={user} handlerSelectUser={handlerSelectUser} handleRemoveUser={handleRemoveUser} />
               ))}
             </tbody>
             <tfoot></tfoot>
@@ -33,5 +33,6 @@ export const ListUsers = ({ users, handleRemoveFromCart }) => {
 
 ListUsers.propTypes = {
   users: PropTypes.array.isRequired,
-  handleRemoveFromCart: PropTypes.func.isRequired
+  handlerSelectUser: PropTypes.func.isRequired,
+  handleRemoveUser: PropTypes.func.isRequired
 };

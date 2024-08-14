@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './RowUser.css';
 
-export const RowUser = ({ user, handleRemoveFromCart }) => {
+export const RowUser = ({ user, handlerSelectUser, handleRemoveUser }) => {
   const { id, name, username, email, role } = user;
   return (
     <>
@@ -11,10 +11,10 @@ export const RowUser = ({ user, handleRemoveFromCart }) => {
         <td>{email}</td>
         <td>{role}</td>
         <td className={'row-actions'}>
-          <button className={'btn btn-warning'} onClick={() => handleRemoveFromCart(id)}>
+          <button className={'btn btn-warning'} onClick={() => handlerSelectUser(user)}>
             <span className="material-symbols-outlined">edit</span>
           </button>
-          <button className={'btn btn-danger'} onClick={() => handleRemoveFromCart(id)}>
+          <button className={'btn btn-danger'} onClick={() => handleRemoveUser(id)}>
             <span className={'material-symbols-outlined'}>delete</span>
           </button>
         </td>
@@ -32,5 +32,6 @@ RowUser.propTypes = {
     email: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired
   }),
-  handleRemoveFromCart: PropTypes.func.isRequired
+  handlerSelectUser: PropTypes.func.isRequired,
+  handleRemoveUser: PropTypes.func.isRequired
 };
