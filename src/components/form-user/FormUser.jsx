@@ -4,9 +4,9 @@ import { roles } from './Roles.js';
 import PropTypes from 'prop-types';
 import './FormUser.css';
 
-export const FormUser = ({ handleAddUser, users, userSelected, handleEditUser }) => {
+export const FormUser = ({ users, handleAddUser, userSelected, handleEditUser }) => {
   const [formValues, setFormValues] = useState(userInitialState);
-  const { name, username, password, email, role } = formValues;
+  const { id, name, username, password, email, role } = formValues;
 
   useEffect(() => {
     setFormValues(userSelected);
@@ -34,25 +34,12 @@ export const FormUser = ({ handleAddUser, users, userSelected, handleEditUser })
     console.log('userExists: ', userExists);
 
     let user;
-    if (userExists) {
-      user = {
-        id: userSelected.id,
-        name,
-        username,
-        password,
-        email,
-        role
-      };
-      console.log('handleEditUser', user);
-      handleEditUser(user);
+    if (id !== '') {
+      handleEditUser({ ...formValues });
     } else {
       user = {
-        id: crypto.randomUUID(),
-        name,
-        username,
-        password,
-        email,
-        role
+        ...formValues,
+        id: crypto.randomUUID()
       };
 
       handleAddUser(user);
@@ -68,31 +55,31 @@ export const FormUser = ({ handleAddUser, users, userSelected, handleEditUser })
             <label htmlFor="name" className="form-label">
               Name:
             </label>
-            <input type="text" className="form-control" id="name" name="name" value={name || ''} onChange={handleChange} />
+            <input type="text" className="form-control" id="name" name="name" value={name} onChange={handleChange} />
           </div>
           <div className={'col'}>
             <label htmlFor="username" className="form-label">
               Username:
             </label>
-            <input type="text" className="form-control" id="username" name="username" value={username || ''} onChange={handleChange} />
+            <input type="text" className="form-control" id="username" name="username" value={username} onChange={handleChange} />
           </div>
           <div className={'col'}>
             <label htmlFor="password" className="form-label">
               Password:
             </label>
-            <input type="password" className="form-control" id="password" name="password" value={password || ''} onChange={handleChange} />
+            <input type="password" className="form-control" id="password" name="password" value={password} onChange={handleChange} />
           </div>
           <div className={'col'}>
             <label htmlFor="email" className="form-label">
               Email:
             </label>
-            <input type="email" className="form-control" id="email" name="email" value={email || ''} onChange={handleChange} />
+            <input type="email" className="form-control" id="email" name="email" value={email} onChange={handleChange} />
           </div>
           <div className={'col'}>
             <label htmlFor="role" className="form-label">
               Role:
             </label>
-            <select className="form-select" aria-label="role" name={'role'} value={role || ''} onChange={handleChange}>
+            <select className="form-select" aria-label="role" name={'role'} value={role} onChange={handleChange}>
               <option value={''}>Select role</option>
               {roles.map((role) => (
                 <option key={role.id} value={role.name}>
