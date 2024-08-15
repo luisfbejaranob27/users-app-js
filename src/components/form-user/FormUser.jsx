@@ -3,6 +3,7 @@ import { userInitialState } from '../../data/UserInitialState.js';
 import { roles } from './Roles.js';
 import PropTypes from 'prop-types';
 import './FormUser.css';
+import { alert } from '../../alerts/Alert.js';
 
 export const FormUser = ({ users, handleAddUser, userSelected, handleEditUser }) => {
   const [formValues, setFormValues] = useState(userInitialState);
@@ -25,7 +26,7 @@ export const FormUser = ({ users, handleAddUser, userSelected, handleEditUser })
     event.preventDefault();
 
     if (!name || !username || !password || !email || !role) {
-      alert('Please complete the form fields');
+      alert('Oops...', 'Please complete the form fields', 'error');
       return;
     }
 

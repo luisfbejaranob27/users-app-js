@@ -3,6 +3,9 @@ import { getUsers } from '../services/UserService.js';
 import { userReducer } from '../reduce/UserReduce.js';
 import { userInitialState } from '../data/UserInitialState.js';
 import { userActions } from '../reduce/UserActions.js';
+import Swal from 'sweetalert2';
+import { alertConfirm } from '../alerts/AlertConfirm.js';
+import {alert} from "../alerts/Alert.js";
 
 export const useUsers = () => {
   const usersInitialState = getUsers();
@@ -15,6 +18,7 @@ export const useUsers = () => {
       type: userActions.ADD_USER,
       payload: user
     });
+    alert('User created', 'The user has been created successfully', 'success');
   }
 
   const handlerSelectUser = (user) => {
@@ -26,13 +30,23 @@ export const useUsers = () => {
       type: userActions.EDIT_USER,
       payload: user
     });
+    alert('Updated user', 'The user has been successfully updated', 'success');
   }
 
   function handleRemoveUser(id) {
-    dispatch({
-      type: userActions.REMOVE_USER,
-      payload: id
-    });
+    alertConfirm(
+      'Are you sure?',
+      "You won't be able to revert this!",
+      'warning',
+      dispatch,
+      {
+        type: userActions.REMOVE_USER,
+        payload: id
+      },
+      'Deleted!',
+      'user',
+      'delete'
+    );
   }
 
   useEffect(() => {
