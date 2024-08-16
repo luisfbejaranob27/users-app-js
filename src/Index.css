@@ -17,3 +17,7 @@ body {
   background-color: inherit;
   color: inherit;
 }
+
+div:where(.swal2-container).swal2-backdrop-show, div:where(.swal2-container).swal2-noanimation {
+  background: rgba(0,0,0,.7);
+}

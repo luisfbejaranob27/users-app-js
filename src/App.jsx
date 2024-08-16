@@ -1,10 +1,11 @@
 import { useUsers } from './hooks/useUsers.js';
 import { ListUsers } from './components/list-users/ListUsers.jsx';
-import { FormUser } from './components/form-user/FormUser.jsx';
+import { ModalFormUser } from './components/modal-form-user/ModalFormUser.jsx';
 import './App.css';
 
 function App() {
-  const { users, userSelected, handleAddUser, handlerSelectUser, handleEditUser, handleRemoveUser } = useUsers();
+  const { users, userSelected, activeForm, handleActiveForm, handleAddUser, handlerSelectUser, handleEditUser, handleRemoveUser, handleResetForm } = useUsers();
+  console.log('activeForm', activeForm);
 
   return (
     <>
@@ -12,18 +13,13 @@ function App() {
         <div className={'row main-app'}>
           <div className={'col'}>
             {users?.length > 0 ? (
-              <ListUsers users={users} handlerSelectUser={handlerSelectUser} handleRemoveUser={handleRemoveUser} />
+              <ListUsers users={users} handlerSelectUser={handlerSelectUser} handleRemoveUser={handleRemoveUser} handleActiveFrom={handleActiveForm} />
             ) : (
               <div className="alert alert-warning">No registered users there</div>
             )}
           </div>
-          <div>
-            <button className={'btn btn-primary'}>Create</button>
-          </div>
-          <div className={'col'}>
-            <FormUser users={users} handleAddUser={handleAddUser} userSelected={userSelected} handleEditUser={handleEditUser} />
-          </div>
         </div>
+        {!activeForm || <ModalFormUser handleAddUser={handleAddUser} userSelected={userSelected} handleEditUser={handleEditUser} handleResetForm={handleResetForm} />}
       </div>
     </>
   );

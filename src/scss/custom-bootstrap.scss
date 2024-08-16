@@ -1,8 +1,27 @@
 $main: #580078;
 $main-light: #8c00bb;
 $main-dark: #340044;
+$dark: #242424;
 
 $primary: $main;
+$secondary: #4d4d4d;
+$warning: #FFC107FF;
+$danger: #DC3545FF;
+
+$theme-colors: (
+        "primary":    $primary,
+        "secondary":  $secondary,
+        //"success":    $success,
+        //"info":       $info,
+        "warning":    $warning,
+        "danger":     $danger,
+        //"light":      $light,
+        "dark":       $dark
+);
+
+$modal-content-bg: $dark;
+
+$input-bg: $dark;
 
 .btn {
   color: #fff !important;

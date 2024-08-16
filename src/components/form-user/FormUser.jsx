@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { userInitialState } from '../../data/UserInitialState.js';
 import { roles } from './Roles.js';
+import { alert } from '../../alerts/Alert.js';
 import PropTypes from 'prop-types';
 import './FormUser.css';
-import { alert } from '../../alerts/Alert.js';
 
-export const FormUser = ({ users, handleAddUser, userSelected, handleEditUser }) => {
+export const FormUser = ({ handleAddUser, userSelected, handleEditUser, handleResetForm }) => {
   const [formValues, setFormValues] = useState(userInitialState);
   const { id, name, username, password, email, role } = formValues;
 
@@ -30,10 +30,6 @@ export const FormUser = ({ users, handleAddUser, userSelected, handleEditUser })
       return;
     }
 
-    console.log('handleSubmit users: ', users);
-    const userExists = users.find((p) => p.id === userSelected.id);
-    console.log('userExists: ', userExists);
-
     let user;
     if (id !== '') {
       handleEditUser({ ...formValues });
@@ -45,32 +41,32 @@ export const FormUser = ({ users, handleAddUser, userSelected, handleEditUser })
 
       handleAddUser(user);
     }
-    setFormValues(userInitialState);
+    handleResetForm();
   };
 
   return (
     <>
       <form className={'form-user'} onSubmit={handleSubmit}>
         <div className={'row'}>
-          <div className={'col'}>
+          <div className={'col-6'}>
             <label htmlFor="name" className="form-label">
               Name:
             </label>
             <input type="text" className="form-control" id="name" name="name" value={name} onChange={handleChange} />
           </div>
-          <div className={'col'}>
+          <div className={'col-6'}>
             <label htmlFor="username" className="form-label">
               Username:
             </label>
             <input type="text" className="form-control" id="username" name="username" value={username} onChange={handleChange} />
           </div>
-          <div className={'col'}>
+          <div className={'col-6'}>
             <label htmlFor="password" className="form-label">
               Password:
             </label>
             <input type="password" className="form-control" id="password" name="password" value={password} onChange={handleChange} />
           </div>
-          <div className={'col'}>
+          <div className={'col-6'}>
             <label htmlFor="email" className="form-label">
               Email:
             </label>
@@ -95,7 +91,7 @@ export const FormUser = ({ users, handleAddUser, userSelected, handleEditUser })
             <button type="submit" className="btn btn-primary">
               Save
             </button>
-            <button type="button" className="btn btn-secondary">
+            <button type="button" className="btn btn-secondary" onClick={handleResetForm}>
               Cancel
             </button>
           </div>
@@ -107,7 +103,6 @@ export const FormUser = ({ users, handleAddUser, userSelected, handleEditUser })
 
 FormUser.propTypes = {
   handleAddUser: PropTypes.func.isRequired,
-  users: PropTypes.array.isRequired,
   userSelected: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
@@ -116,5 +111,6 @@ FormUser.propTypes = {
     email: PropTypes.string,
     role: PropTypes.string
   }),
-  handleEditUser: PropTypes.func.isRequired
+  handleEditUser: PropTypes.func.isRequired,
+  handleResetForm: PropTypes.func.isRequired
 };

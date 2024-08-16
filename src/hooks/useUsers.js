@@ -3,15 +3,18 @@ import { getUsers } from '../services/UserService.js';
 import { userReducer } from '../reduce/UserReduce.js';
 import { userInitialState } from '../data/UserInitialState.js';
 import { userActions } from '../reduce/UserActions.js';
-import Swal from 'sweetalert2';
+import { alert } from '../alerts/Alert.js';
 import { alertConfirm } from '../alerts/AlertConfirm.js';
-import {alert} from "../alerts/Alert.js";
 
 export const useUsers = () => {
   const usersInitialState = getUsers();
   const [users, dispatch] = useReducer(userReducer, usersInitialState);
-
   const [userSelected, setUserSelected] = useState(userInitialState);
+  const [activeForm, setActiveForm] = useState(false);
+
+  const handleActiveForm = (value) => {
+    setActiveForm(value);
+  };
 
   function handleAddUser(user) {
     dispatch({
@@ -23,6 +26,7 @@ export const useUsers = () => {
 
   const handlerSelectUser = (user) => {
     setUserSelected(user);
+    handleActiveForm(true);
   };
 
   function handleEditUser(user) {
@@ -49,6 +53,11 @@ export const useUsers = () => {
     );
   }
 
+  function handleResetForm() {
+    setUserSelected(userInitialState);
+    handleActiveForm(false);
+  }
+
   useEffect(() => {
     sessionStorage.setItem('users', JSON.stringify(users));
   }, [users]);
@@ -56,9 +65,12 @@ export const useUsers = () => {
   return {
     users,
     userSelected,
+    activeForm,
+    handleActiveForm,
     handleAddUser,
     handlerSelectUser,
     handleEditUser,
-    handleRemoveUser
+    handleRemoveUser,
+    handleResetForm
   };
 };
