@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from 'react';
 import { getUsers } from '../services/UserService.js';
 import { userReducer } from '../reduce/UserReduce.js';
 import { userInitialState } from '../data/UserInitialState.js';
-import { userActions } from '../reduce/UserActions.js';
+import { userActions } from '../reduce/Actions.js';
 import { alert } from '../alerts/Alert.js';
 import { alertConfirm } from '../alerts/AlertConfirm.js';
 

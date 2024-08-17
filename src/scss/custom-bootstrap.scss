@@ -19,9 +19,11 @@ $theme-colors: (
         "dark":       $dark
 );
 
+$input-bg: $dark;
+
 $modal-content-bg: $dark;
 
-$input-bg: $dark;
+$card-bg: $dark;
 
 .btn {
   color: #fff !important;

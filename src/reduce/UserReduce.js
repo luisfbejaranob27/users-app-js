@@ -1,4 +1,4 @@
-import { userActions } from './UserActions.js';
+import { userActions } from './Actions.js';
 
 export const userReducer = (state, action) => {
   const { type, payload } = action;

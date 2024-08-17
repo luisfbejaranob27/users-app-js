@@ -12,7 +12,7 @@ export const RowUser = ({ user, handlerSelectUser, handleRemoveUser }) => {
         <td>{role}</td>
         <td className={'row-actions'}>
           <button className={'btn btn-warning'} onClick={() => handlerSelectUser(user)}>
-            <span className="material-symbols-outlined">edit</span>
+            <span className={'material-symbols-outlined'}>edit</span>
           </button>
           <button className={'btn btn-danger'} onClick={() => handleRemoveUser(id)}>
             <span className={'material-symbols-outlined'}>delete</span>

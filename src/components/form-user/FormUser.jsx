@@ -49,34 +49,34 @@ export const FormUser = ({ handleAddUser, userSelected, handleEditUser, handleRe
       <form className={'form-user'} onSubmit={handleSubmit}>
         <div className={'row'}>
           <div className={'col-6'}>
-            <label htmlFor="name" className="form-label">
+            <label htmlFor={'name'} className={'form-label'}>
               Name:
             </label>
-            <input type="text" className="form-control" id="name" name="name" value={name} onChange={handleChange} />
+            <input type={'text'} className={'form-control'} id={'name'} name={'name'} value={name} onChange={handleChange} />
           </div>
           <div className={'col-6'}>
-            <label htmlFor="username" className="form-label">
+            <label htmlFor={'username'} className={'form-label'}>
               Username:
             </label>
-            <input type="text" className="form-control" id="username" name="username" value={username} onChange={handleChange} />
+            <input type={'text'} className={'form-control'} id={'username'} name={'username'} value={username} onChange={handleChange} />
           </div>
           <div className={'col-6'}>
-            <label htmlFor="password" className="form-label">
+            <label htmlFor={'password'} className={'form-label'}>
               Password:
             </label>
-            <input type="password" className="form-control" id="password" name="password" value={password} onChange={handleChange} />
+            <input type={'password'} className={'form-control'} id={'password'} name={'password'} value={password} onChange={handleChange} />
           </div>
           <div className={'col-6'}>
-            <label htmlFor="email" className="form-label">
+            <label htmlFor={'email'} className={'form-label'}>
               Email:
             </label>
-            <input type="email" className="form-control" id="email" name="email" value={email} onChange={handleChange} />
+            <input type={'email'} className={'form-control'} id={'email'} name={'email'} value={email} onChange={handleChange} />
           </div>
           <div className={'col'}>
-            <label htmlFor="role" className="form-label">
+            <label htmlFor="role" className={'form-label'}>
               Role:
             </label>
-            <select className="form-select" aria-label="role" name={'role'} value={role} onChange={handleChange}>
+            <select className={'form-select'} aria-label={'role'} name={'role'} value={role} onChange={handleChange}>
               <option value={''}>Select role</option>
               {roles.map((role) => (
                 <option key={role.id} value={role.name}>
@@ -88,10 +88,10 @@ export const FormUser = ({ handleAddUser, userSelected, handleEditUser, handleRe
         </div>
         <div className={'row'}>
           <div className={'col form-buttons'}>
-            <button type="submit" className="btn btn-primary">
+            <button type={'submit'} className={'btn btn-primary'}>
               Save
             </button>
-            <button type="button" className="btn btn-secondary" onClick={handleResetForm}>
+            <button type={'button'} className={'btn btn-secondary'} onClick={handleResetForm}>
               Cancel
             </button>
           </div>
