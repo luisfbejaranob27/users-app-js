@@ -7,10 +7,10 @@ export const useLogin = () => {
   const authInitialState = getAuthenticatedUser();
   const [auth, dispatch] = useReducer(loginReducer, authInitialState);
 
-  const handleAuthenticated = (value) => {
+  const handleAuthenticated = (data) => {
     dispatch({
-      type: !value ? loginActions.LOGIN : loginActions.LOGOUT,
-      payload: value
+      type: !data.isAuthenticated ? loginActions.LOGIN : loginActions.LOGOUT,
+      payload: data
     });
   };
 

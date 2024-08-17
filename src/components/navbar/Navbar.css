@@ -1,0 +1,40 @@
+.bg-body-tertiary {
+    background-color: transparent !important;
+}
+
+.navbar {
+    margin-bottom: 1rem;
+}
+
+.navbar .container-fluid {
+    padding: 0;
+}
+
+.navbar h2 {
+    margin: 0 1.5rem 0 0;
+}
+
+.navbar a,
+.navbar a:hover{
+    color: inherit;
+}
+
+.navbar a.active {
+    color: #8c00bb !important;
+    font-weight: bold;
+}
+
+.navbar-toggler {
+    color: white;
+    border: none !important;
+}
+
+.navbar-toggler-icon {
+    color: white !important;
+}
+
+.user-logout {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}

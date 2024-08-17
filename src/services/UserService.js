@@ -10,7 +10,6 @@ export const getAuthenticatedUser = () => {
 };
 
 export const getUserByUsername = (username) => {
-  console.log('getUserByUsername');
   const users = JSON.parse(sessionStorage.getItem('users')) || [];
   return users.find((user) => user.username === username);
 };
