@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Navbar.css';
 
@@ -22,20 +23,15 @@ export const Navbar = ({ auth, handleAuthenticated }) => {
           <div className={'collapse navbar-collapse'} id={'navbarSupportedContent'}>
             <ul className={'navbar-nav me-auto mb-2 mb-lg-0'}>
               <li className={'nav-item'}>
-                <a className={'nav-link'} href={'#'}>
+                <NavLink className={'nav-link'} to={'/users'}>
                   Home
-                </a>
-              </li>
-              <li className={'nav-item'}>
-                <a className={'nav-link'} href={'#'}>
-                  Test
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
           <div className={'user-logout text-end'}>
             <span>{username}</span>
-            <button type={'button'} className={'btn btn-secondary'} onClick={() => handleAuthenticated(false)}>
+            <button type={'button'} className={'btn btn-secondary'} onClick={() => handleAuthenticated({ isAuthenticated: false })}>
               Logout
             </button>
           </div>

@@ -4,5 +4,5 @@ export const userInitialState = {
   username: '',
   password: '',
   email: '',
-  role: ''
+  role: 'User'
 };

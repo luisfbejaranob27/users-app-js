@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { userInitialState } from '../../data/UserInitialState.js';
 import { roles } from './Roles.js';
 import { alert } from '../../alerts/Alert.js';
 import PropTypes from 'prop-types';
 import './FormUser.css';
+import { existsUserByUsername, existUserByEmail, getUserByUsername } from '../../services/UserService.js';
 
-export const FormUser = ({ handleAddUser, userSelected, handleEditUser, handleResetForm }) => {
+export const FormUser = ({ handleAddUser, userSelected, handleEditUser, activeForm, handleResetForm }) => {
   const [formValues, setFormValues] = useState(userInitialState);
   const { id, name, username, password, email, role } = formValues;
+  const navigate = useNavigate();
 
   useEffect(() => {
     setFormValues(userSelected);
@@ -24,6 +27,19 @@ export const FormUser = ({ handleAddUser, userSelected, handleEditUser, handleRe
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const usernameFound = existsUserByUsername(username);
+    const emailFound = existUserByEmail(email);
+
+    if (username !== '' && usernameFound) {
+      alert('Oops...', 'A user is already registered with the username', 'error');
+      return;
+    }
+
+    if (email !== '' && emailFound) {
+      alert('Oops...', 'A user is already registered with the email', 'error');
+      return;
+    }
 
     if (!name || !username || !password || !email || !role) {
       alert('Oops...', 'Please complete the form fields', 'error');
@@ -42,6 +58,12 @@ export const FormUser = ({ handleAddUser, userSelected, handleEditUser, handleRe
       handleAddUser(user);
     }
     handleResetForm();
+    navigate('/users');
+  };
+
+  const handleCancelForm = () => {
+    handleResetForm();
+    navigate('/users');
   };
 
   return (
@@ -72,26 +94,30 @@ export const FormUser = ({ handleAddUser, userSelected, handleEditUser, handleRe
             </label>
             <input type={'email'} className={'form-control'} id={'email'} name={'email'} value={email} onChange={handleChange} />
           </div>
-          <div className={'col'}>
-            <label htmlFor="role" className={'form-label'}>
-              Role:
-            </label>
-            <select className={'form-select'} aria-label={'role'} name={'role'} value={role} onChange={handleChange}>
-              <option value={''}>Select role</option>
-              {roles.map((role) => (
-                <option key={role.id} value={role.name}>
-                  {role.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          {activeForm ? (
+            <div className={'col'}>
+              <label htmlFor="role" className={'form-label'}>
+                Role:
+              </label>
+              <select className={'form-select'} aria-label={'role'} name={'role'} value={role} onChange={handleChange}>
+                <option value={''}>Select role</option>
+                {roles.map((role) => (
+                  <option key={role.id} value={role.name}>
+                    {role.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ) : (
+            ''
+          )}
         </div>
         <div className={'row'}>
           <div className={'col form-buttons'}>
             <button type={'submit'} className={'btn btn-primary'}>
               Save
             </button>
-            <button type={'button'} className={'btn btn-secondary'} onClick={handleResetForm}>
+            <button type={'button'} className={'btn btn-secondary'} onClick={handleCancelForm}>
               Cancel
             </button>
           </div>
@@ -110,7 +136,8 @@ FormUser.propTypes = {
     password: PropTypes.string,
     email: PropTypes.string,
     role: PropTypes.string
-  }),
-  handleEditUser: PropTypes.func.isRequired,
-  handleResetForm: PropTypes.func.isRequired
+  }).isRequired,
+  handleEditUser: PropTypes.func,
+  activeForm: PropTypes.bool.isRequired,
+  handleResetForm: PropTypes.func
 };

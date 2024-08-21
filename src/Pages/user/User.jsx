@@ -14,7 +14,7 @@ export const User = ({ users, userSelected, activeForm, handleActiveForm, handle
           )}
         </div>
       </div>
-      {!activeForm || <ModalFormUser handleAddUser={handleAddUser} userSelected={userSelected} handleEditUser={handleEditUser} handleResetForm={handleResetForm} />}
+      {!activeForm || <ModalFormUser handleAddUser={handleAddUser} userSelected={userSelected} handleEditUser={handleEditUser} activeForm={activeForm} handleResetForm={handleResetForm} />}
     </>
   );
 };
@@ -28,7 +28,7 @@ User.propTypes = {
     password: PropTypes.string,
     email: PropTypes.string,
     role: PropTypes.string
-  }),
+  }).isRequired,
   activeForm: PropTypes.bool.isRequired,
   handleActiveForm: PropTypes.func.isRequired,
   handleAddUser: PropTypes.func.isRequired,

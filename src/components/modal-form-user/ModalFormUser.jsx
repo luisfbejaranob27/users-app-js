@@ -2,7 +2,7 @@ import { FormUser } from '../form-user/FormUser.jsx';
 import PropTypes from 'prop-types';
 import './ModalFormUser.css';
 
-export const ModalFormUser = ({ handleAddUser, userSelected, handleEditUser, handleResetForm }) => {
+export const ModalFormUser = ({ handleAddUser, userSelected, handleEditUser, activeForm, handleResetForm }) => {
   return (
     <>
       <div className={'bg-modal fadeIn'}>
@@ -13,7 +13,7 @@ export const ModalFormUser = ({ handleAddUser, userSelected, handleEditUser, han
                 <h3 className={'modal-title'}>{userSelected.id !== '' ? 'Edit' : 'Create'}</h3>
               </div>
               <div className={'modal-body'}>
-                <FormUser handleAddUser={handleAddUser} userSelected={userSelected} handleEditUser={handleEditUser} handleResetForm={handleResetForm} />
+                <FormUser handleAddUser={handleAddUser} userSelected={userSelected} handleEditUser={handleEditUser} activeForm={activeForm} handleResetForm={handleResetForm} />
               </div>
             </div>
           </div>
@@ -34,5 +34,6 @@ ModalFormUser.propTypes = {
     role: PropTypes.string
   }),
   handleEditUser: PropTypes.func.isRequired,
+  activeForm: PropTypes.bool.isRequired,
   handleResetForm: PropTypes.func.isRequired
 };

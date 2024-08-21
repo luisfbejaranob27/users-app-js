@@ -1,0 +1,10 @@
+.register {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.register .card .card-body .row .form-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: right;
+}
