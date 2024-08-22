@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-import PropTypes from 'prop-types';
 import { useUsers } from '../hooks/useUsers.js';
+import PropTypes from 'prop-types';
 
 export const UserContext = createContext({});
 

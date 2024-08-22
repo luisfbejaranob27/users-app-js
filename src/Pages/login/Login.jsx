@@ -1,11 +1,8 @@
 import { FormLogin } from '../../components/form-login/FormLogin.jsx';
-import { useFormLogin } from '../../hooks/useFormLogin.js';
-import PropTypes from 'prop-types';
-import './Login.css';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
-export const Login = ({ handleAuthenticated }) => {
-	const { handleChange, handleSubmit } = useFormLogin(handleAuthenticated);
+export const Login = () => {
 	const navigate = useNavigate();
 
 	const handleRegister = () => {
@@ -17,7 +14,7 @@ export const Login = ({ handleAuthenticated }) => {
 			<div className={'container-fluid login'}>
 				<div className={'row '}>
 					<div className={'col'}>
-						<FormLogin handleSubmit={handleSubmit} handleChange={handleChange} />
+						<FormLogin />
 					</div>
 					<div className={'col'}>
 						<div className={'btn-register'}>
@@ -30,8 +27,4 @@ export const Login = ({ handleAuthenticated }) => {
 			</div>
 		</>
 	);
-};
-
-Login.propTypes = {
-	handleAuthenticated: PropTypes.func.isRequired
 };

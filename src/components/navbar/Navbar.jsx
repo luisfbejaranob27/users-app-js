@@ -1,8 +1,10 @@
+import { useContext } from 'react';
+import { LoginContext } from '../../context/LoginContext.jsx';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import './Navbar.css';
 
-export const Navbar = ({ auth, handleAuthenticated }) => {
+export const Navbar = () => {
+	const { auth, handleAuthenticated } = useContext(LoginContext);
 	const { username } = auth;
 	return (
 		<>
@@ -39,12 +41,4 @@ export const Navbar = ({ auth, handleAuthenticated }) => {
 			</nav>
 		</>
 	);
-};
-
-Navbar.propTypes = {
-	auth: PropTypes.shape({
-		username: PropTypes.string.isRequired,
-		isAuthenticated: PropTypes.bool.isRequired
-	}),
-	handleAuthenticated: PropTypes.func.isRequired
 };

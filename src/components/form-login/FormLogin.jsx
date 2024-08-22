@@ -1,7 +1,9 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { LoginContext } from '../../context/LoginContext.jsx';
 import './FormLogin.css';
 
-export const FormLogin = ({ handleSubmit, handleChange }) => {
+export const FormLogin = () => {
+	const { handleSubmit, handleChange } = useContext(LoginContext);
 	return (
 		<>
 			<div className={'card w-25'}>
@@ -34,9 +36,4 @@ export const FormLogin = ({ handleSubmit, handleChange }) => {
 			</div>
 		</>
 	);
-};
-
-FormLogin.propTypes = {
-	handleSubmit: PropTypes.func,
-	handleChange: PropTypes.func
 };
