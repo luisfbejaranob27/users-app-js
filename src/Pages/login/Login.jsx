@@ -5,33 +5,33 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
 export const Login = ({ handleAuthenticated }) => {
-  const { handleChange, handleSubmit } = useFormLogin(handleAuthenticated);
-  const navigate = useNavigate();
+	const { handleChange, handleSubmit } = useFormLogin(handleAuthenticated);
+	const navigate = useNavigate();
 
-  const handleRegister = () => {
-    navigate('/register');
-  };
+	const handleRegister = () => {
+		navigate('/register');
+	};
 
-  return (
-    <>
-      <div className={'container-fluid login'}>
-        <div className={'row '}>
-          <div className={'col'}>
-            <FormLogin handleSubmit={handleSubmit} handleChange={handleChange} />
-          </div>
-          <div className={'col'}>
-            <div className={'btn-register'}>
-              <button type={'button'} className={'btn btn-secondary'} onClick={handleRegister}>
-                Register
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div className={'container-fluid login'}>
+				<div className={'row '}>
+					<div className={'col'}>
+						<FormLogin handleSubmit={handleSubmit} handleChange={handleChange} />
+					</div>
+					<div className={'col'}>
+						<div className={'btn-register'}>
+							<button type={'button'} className={'btn btn-secondary'} onClick={handleRegister}>
+								Register
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
 };
 
 Login.propTypes = {
-  handleAuthenticated: PropTypes.func.isRequired
+	handleAuthenticated: PropTypes.func.isRequired
 };

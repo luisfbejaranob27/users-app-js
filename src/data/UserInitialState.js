@@ -1,8 +1,8 @@
 export const userInitialState = {
-  id: '',
-  name: '',
-  username: '',
-  password: '',
-  email: '',
-  role: 'User'
+	id: '',
+	name: '',
+	username: '',
+	password: '',
+	email: '',
+	role: 'User'
 };

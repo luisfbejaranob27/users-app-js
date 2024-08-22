@@ -1,46 +1,46 @@
 .login {
-    margin-top: 3rem;
+	margin-top: 3rem;
 }
 
 .login .row {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }
 
 .login .row .col {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .login .card-header {
-    text-align: center;
+	text-align: center;
 }
 
 .login .card-body {
-    padding: 1rem 1rem 1.6rem;
+	padding: 1rem 1rem 1.6rem;
 }
 
 .login-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }
 
 .login .card-footer {
-    padding: 1rem;
+	padding: 1rem;
 }
 
 .login .card-footer button {
-    width: 100%;
+	width: 100%;
 }
 
 .btn-register {
-    width: 25%;
-    text-align: center;
-    padding: 1rem;
+	width: 25%;
+	text-align: center;
+	padding: 1rem;
 }
 
 .btn-register button {
-    width: 100%;
+	width: 100%;
 }

@@ -5,18 +5,18 @@ $dark: #242424;
 
 $primary: $main;
 $secondary: #4d4d4d;
-$warning: #FFC107FF;
-$danger: #DC3545FF;
+$warning: #ffc107ff;
+$danger: #dc3545ff;
 
 $theme-colors: (
-        "primary":    $primary,
-        "secondary":  $secondary,
-        //"success":    $success,
-        //"info":       $info,
-        "warning":    $warning,
-        "danger":     $danger,
-        //"light":      $light,
-        "dark":       $dark
+	'primary': $primary,
+	'secondary': $secondary,
+	//"success":    $success,
+	//"info":       $info,
+	'warning': $warning,
+	'danger': $danger,
+	//"light":      $light,
+	'dark': $dark
 );
 
 $input-bg: $dark;
@@ -26,15 +26,8 @@ $modal-content-bg: $dark;
 $card-bg: $dark;
 
 .btn {
-  color: #fff !important;
-  padding: 6px 8px !important;
+	color: #fff !important;
+	padding: 6px 8px !important;
 }
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
-
-
-
-
-
-
-

@@ -1,4 +1,4 @@
 export const loginInitialState = {
-  username: '',
-  isAuthenticated: false
+	username: '',
+	isAuthenticated: false
 };

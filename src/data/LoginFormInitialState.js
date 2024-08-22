@@ -1,5 +1,5 @@
 export const loginFormInitialState = {
-  username: '',
-  password: '',
-  isAuthenticated: false
+	username: '',
+	password: '',
+	isAuthenticated: false
 };

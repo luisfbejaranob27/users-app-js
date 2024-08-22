@@ -17,6 +17,8 @@ module.exports = {
       }
     ],
     'multiline-ternary': ["error", "never"],
+		'indent': ['off', "tab"],
+		'no-tabs': 'off',
     'react/jsx-no-target-blank': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
   }
