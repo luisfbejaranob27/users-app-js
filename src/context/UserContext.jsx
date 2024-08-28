@@ -6,9 +6,13 @@ export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
 	const {
-		users,
+		state,
+		loading,
+		errors,
+		setErrors,
 		userSelected,
 		activeForm,
+		fetchUsers,
 		handleActiveForm,
 		handleAddUser,
 		handlerSelectUser,
@@ -20,9 +24,13 @@ export const UserProvider = ({ children }) => {
 	return (
 		<UserContext.Provider
 			value={{
-				users,
+				state,
+				loading,
+				errors,
+				setErrors,
 				userSelected,
 				activeForm,
+				fetchUsers,
 				handleActiveForm,
 				handleAddUser,
 				handlerSelectUser,

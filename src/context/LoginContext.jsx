@@ -8,7 +8,6 @@ export const LoginContext = createContext({});
 export const LoginProvider = ({ children }) => {
 	const { auth, handleAuthenticated } = useLogin();
 	const { handleChange, handleSubmit } = useFormLogin(handleAuthenticated);
-	console.log(auth);
 
 	return (
 		<LoginContext.Provider

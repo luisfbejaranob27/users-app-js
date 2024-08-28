@@ -4,7 +4,11 @@ import { RowUser } from './row-user/RowUser.jsx';
 import './ListUsers.css';
 
 export const ListUsers = () => {
-	const { users, handleActiveForm } = useContext(UserContext);
+	const {
+		state: { users },
+		handleActiveForm
+	} = useContext(UserContext);
+
 	return (
 		<>
 			<div className={'row'}>

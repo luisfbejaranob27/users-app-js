@@ -1,6 +1,8 @@
 import Swal from 'sweetalert2';
 
-export const alertConfirm = (title, text, type, dispatch, payload, titleConfirm, entity, action) => {
+export const alertConfirm = (title, text, type, functionAction, dispatch, dispatchPayload, titleConfirm, entity, action) => {
+	const id = dispatchPayload.payload;
+
 	Swal.fire({
 		title,
 		text,
@@ -12,7 +14,8 @@ export const alertConfirm = (title, text, type, dispatch, payload, titleConfirm,
 	}).then((result) => {
 		if (result.isConfirmed) {
 			setTimeout(() => {
-				dispatch(payload);
+				functionAction(id);
+				dispatch(dispatchPayload);
 			}, 500);
 			Swal.fire({
 				title: titleConfirm,

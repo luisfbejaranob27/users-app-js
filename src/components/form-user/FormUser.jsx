@@ -8,15 +8,23 @@ import { alert } from '../../alerts/Alert.js';
 import './FormUser.css';
 
 export const FormUser = () => {
-	const { handleAddUser, userSelected, handleEditUser, activeForm, handleResetForm } = useContext(UserContext);
+	const { errors, setErrors, handleAddUser, userSelected, handleEditUser, activeForm, handleResetForm } = useContext(UserContext);
 	const [formValues, setFormValues] = useState(userInitialState);
 	const { id, name, username, password, email, role } = formValues;
 	const navigate = useNavigate();
-	console.log(formValues);
+	console.log('FormUser', errors);
 
 	useEffect(() => {
 		setFormValues(userSelected);
 	}, [userSelected]);
+
+	useEffect(() => {
+		if (errors.length > 0) {
+			console.log(errors);
+			alert('Oops...', '', errors, 'error');
+			setErrors([]);
+		}
+	}, [errors]);
 
 	const handleChange = ({ target }) => {
 		const { name, value } = target;
@@ -27,25 +35,23 @@ export const FormUser = () => {
 		});
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		const usernameFound = existsUserByUsername(username);
-		console.log(usernameFound);
-		const emailFound = existUserByEmail(email);
+		if (!name || !username || !password || !email || !role) {
+			alert('Oops...', 'Please complete the form fields', errors, 'error');
+			return;
+		}
+
+		const usernameFound = await existsUserByUsername(username);
+		const emailFound = await existUserByEmail(email);
 
 		if (id === '' && usernameFound) {
-			alert('Oops...', 'A user is already registered with the username', 'error');
+			alert('Oops...', 'A user is already registered with the username', errors, 'error');
 			return;
 		}
-
 		if (id === '' && emailFound) {
-			alert('Oops...', 'A user is already registered with the email', 'error');
-			return;
-		}
-
-		if (!name || !username || !password || !email || !role) {
-			alert('Oops...', 'Please complete the form fields', 'error');
+			alert('Oops...', 'A user is already registered with the email', errors, 'error');
 			return;
 		}
 
@@ -54,14 +60,11 @@ export const FormUser = () => {
 			handleEditUser({ ...formValues });
 		} else {
 			user = {
-				...formValues,
-				id: crypto.randomUUID()
+				...formValues
 			};
 
 			handleAddUser(user);
 		}
-		handleResetForm();
-		navigate('/users');
 	};
 
 	const handleCancelForm = () => {
@@ -110,7 +113,6 @@ export const FormUser = () => {
 								Role:
 							</label>
 							<select className={'form-select'} aria-label={'role'} name={'role'} value={role} onChange={handleChange}>
-								<option value={''}>Select role</option>
 								{roles.map((role) => (
 									<option key={role.id} value={role.name}>
 										{role.name}

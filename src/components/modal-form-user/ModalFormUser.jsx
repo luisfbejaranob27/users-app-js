@@ -4,7 +4,8 @@ import { FormUser } from '../form-user/FormUser.jsx';
 import './ModalFormUser.css';
 
 export const ModalFormUser = () => {
-	const { handleAddUser, userSelected, handleEditUser, activeForm, handleResetForm } = useContext(UserContext);
+	const { userSelected } = useContext(UserContext);
+
 	return (
 		<>
 			<div className={'bg-modal fadeIn'}>
@@ -15,13 +16,7 @@ export const ModalFormUser = () => {
 								<h3 className={'modal-title'}>{userSelected.id !== '' ? 'Edit' : 'Create'}</h3>
 							</div>
 							<div className={'modal-body'}>
-								<FormUser
-									handleAddUser={handleAddUser}
-									userSelected={userSelected}
-									handleEditUser={handleEditUser}
-									activeForm={activeForm}
-									handleResetForm={handleResetForm}
-								/>
+								<FormUser />
 							</div>
 						</div>
 					</div>
